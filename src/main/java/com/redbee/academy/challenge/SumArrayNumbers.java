@@ -12,6 +12,10 @@ public class SumArrayNumbers {
    * @return The result of 1 + 2 + 3
    */
   public static Integer sum(List<Integer> array) {
+    if (array == null || array.isEmpty()) {
+      return 0;
+    }
+
     return array.stream().reduce(0, (total, num) -> total + num);
   }
 }
