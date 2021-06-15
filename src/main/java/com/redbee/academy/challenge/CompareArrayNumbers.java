@@ -1,8 +1,7 @@
 package com.redbee.academy.challenge;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class CompareArrayNumbers {
 
@@ -15,10 +14,23 @@ public class CompareArrayNumbers {
    * @return The result of a + b
    */
   public static List<Integer> max(List<Integer> a, List<Integer> b) {
-    return List.of(Collections.max(val(a)), Collections.max(val(b)));
+    List<Integer> res = new ArrayList<Integer>();
+
+    for (int i = 0; i < Math.max(a.size(), b.size()); i++) {
+      res.add(Math.max(getOrDef(a, i), getOrDef(b, i)));
+    }
+
+    return res;
   }
 
-  public static List<Integer> val(List<Integer> x) {
-    return Objects.requireNonNullElse(x, List.of(0));
+  /**
+   * 
+   * @param x - An Integer List
+   * @param index - An index to get a value from
+   * @return The value in list[index] or 0 if index is out of bounds.
+   */
+  public static Integer getOrDef(List<Integer> x, int index) {
+    return (index >= 0 && index < x.size()) ? x.get(index) : 0;
   }
+
 }
